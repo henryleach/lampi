@@ -32,8 +32,8 @@ parser.add_argument("-r ", "--refresh", default=30, choices=range(5,59),
 args = parser.parse_args()
 print("Options chosen:\n",
       "API key:", args.apikey,
-      "Location:", args.location,
-      "foretime:", args.foretime,
+      "Location:", args.location,".",
+      "Forcast distance:", args.foretime, "hours."
       "Refresh every",args.refresh,"min.")
 
 
@@ -111,7 +111,7 @@ try:
             ##Work out the next time to stop and refresh.
             refresh_epoch = ll.next_refresh(args.refresh)
 
-            print("Condition: ", forecast['condition'], " with ", forecast['pop'],"% chance.", sep="")
+            print("Condition: ", forecast['condition'], " with ", forecast['pop'],"% probability.", sep="")
             
             ##Set the number of pulses based on rain forecast
             pulses, intensity = ll.pulsefreq_fromrain(forecast)
