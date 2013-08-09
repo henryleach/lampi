@@ -2,9 +2,9 @@
 """
 run_weatherlight.py Version 1.0
 www.henryleach.com
-Main script to collect weather data from the internet and set an
+Script to collect weather data from wunderground.com and set an
 LED colour and pattern that hopefully gives and intuative impression
-for the weather forecast. Frequency and intensity of(white) pulses represent
+for the weather forecast. Frequency and intensity of (white) pulses represent
 precipitation, base colour is temperature.
 """
 
@@ -14,8 +14,14 @@ import time
 import argparse
 
 ##command line arguments for user, plus defaults and help details.
-parser = argparse.ArgumentParser()
-## -k APIKEY -l LOCATION -f foretime -r refresh_min
+parser = argparse.ArgumentParser(description='Script to collect weather data from'
+                                 'wunderground.com and set an LED colour and'
+                                 'pattern that hopefully gives and intuative impression'
+                                 'of the weather forecast. Frequency and intensity of'
+                                 '(white) pulses represent precipitation, base colour is temperature'
+                                 'on a scale from -30C (green) to +50C (red).'
+                                 )
+## APIKEY LOCATION -f foretime -r refresh_min
 parser.add_argument("apikey", help="wunderground.com 16-char apikey.")
 parser.add_argument("location", help="<country(or US state)>/<city>.")
 parser.add_argument("-f", "--foretime", default=3, choices=range(12),
