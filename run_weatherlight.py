@@ -13,13 +13,15 @@ import RPi.GPIO as GPIO
 import time
 import argparse
 
-##command line arguments for user
+##command line arguments for user, plus defaults and help details.
 parser = argparse.ArgumentParser()
 ## -k APIKEY -l LOCATION -f foretime -r refresh_min
-parser.add_argument("-k", "--apikey", help="wunderground.com apikey")
-parser.add_argument("-l", "--location", help="<country(or US state)>/<city>")
-parser.add_argument("-f", "--foretime", help="How far in advance to forecast, hours", type=int)
-parser.add_argument("-r", "--refresh", help="Refresh time, minutes", type=int)
+parser.add_argument("apikey", help="wunderground.com 16-char apikey.")
+parser.add_argument("location", help="<country(or US state)>/<city>.")
+parser.add_argument("-f", "--foretime", default=3, choices=range(12),
+                    help="How far in advance to forecast, hours. Default 3", type=int)
+parser.add_argument("-r ", "--refresh", default=30, choices=range(5,59),
+                    help="Refresh time, minutes. Default 30", type=int)
 
 args = parser.parse_args()
 print("Options chosen:\n",
@@ -27,6 +29,7 @@ print("Options chosen:\n",
       "Location:", args.location,
       "foretime:", args.foretime,
       "Refresh every",args.refresh,"min.")
+
 
 
 ##pin numbers to match LED legs
